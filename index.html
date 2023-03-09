@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>ingenĭum - Mil razones para una Sonrisa</title>
+    <style>
+      /* CSS styles */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #000000;
+        color: #ffffff;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        background-color: #000001;
+        padding: 20px;
+        text-align: center;
+      }
+      h1 {
+        margin-top: 0;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      footer {
+        background-color: #000002;
+        color: #ffffff;
+        padding: 20px;
+        text-align: center;
+      }
+      .bio {
+        display: inline-block;
+        width: 200px;
+        height: 200px;
+        background-color: #000003;
+        color: #ffffff;
+        margin: 20px;
+        padding: 10px;
+        text-align: center;
+        vertical-align: top;
+      }
+      .bio img {
+        max-width: 100%;
+        height: auto;
+      }
+      .memento-mori {
+        background-color: #000000;
+        color: #ffffff;
+        padding: 20px;
+        text-align: center;
+      }
+      .weeks {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+        background-color: #000000;
+        color: #ffffff;
+        font-size: 3em;
+        font-weight: bold;
+      }
+      .weeks span {
+        display: block;
+        margin-top: 20px;
+      }
+      canvas {
+        margin-top: 20px;
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img src="resources/QR.png" alt=" ~ QR ~ ">
+      <h1>ingenĭum</h1>
+      <!-- <h2>Mil razones para una Sonrisa</h2> -->
+    </header>
+    <h1>Mil razones para una Sonrisa</h1>
+    <img src="resources/openai_logo_DALLE.png" alt="ingenĭum ~ Mil razones para una Sonrisa">
+    <main>
+      <p></p>
+      <div class="memento-mori">
+        <h2>Memento Mori</h2>
+        <p></p>
+        <div class="weeks">
+          <canvas id="weeksSince"></canvas>
+          <span></span>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="bio">
+        <h3>Bio</h3>
+        <p>Male, father, son, each day a bit older, passionate about life, photography, double stars, handmade arts... only me !</p>
+      </div>
+    </footer>
+    <script>    
+      const weeksSince = document.getElementById('weeksSince');
+      const startDate = new Date(1980, 6, 29); 
+      const today = new Date();
+      const diffTime = Math.abs(today - startDate);
+      const diffWeeks = Math.ceil(diffTime / (1000 * 60 * 60 * 24 * 7));
+
+      const ctx = weeksSince.getContext('2d');
+      const centerX = weeksSince.width / 2;
+      const centerY = weeksSince.height / 2;
+      const radius = 100;
+      const startAngle = 0;
+      const endAngle = (2 * Math.PI) * (diffWeeks / 1000);
+      const counterClockwise = false;
+
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, startAngle, endAngle, counterClockwise);
+      ctx.lineWidth = 10;
+      ctx.strokeStyle = '#444444';
+      ctx.stroke();      
+
+      // Add text to graphic's center
+      ctx.fillStyle = '#444444';
+      ctx.font = '30px Arial';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(`${diffWeeks} / 5215`, centerX, centerY);
+    </script>
+
+  </body>
+</html>
